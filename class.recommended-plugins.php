@@ -64,10 +64,12 @@ if(!class_exists('HTRP_Recommended_Plugins')){
          */
         public function enqueue_assets( $hook_suffix ) {
             if( $this->hook_suffix ){
+                add_thickbox();
                 if($this->hook_suffix == $hook_suffix){
                     wp_enqueue_script( 'htrp-main', $this->file_root_url . '/assets/js/main.js', array('jquery'), '', true );
                 }
             } else {
+                add_thickbox();
                 wp_enqueue_script( 'htrp-main', $this->file_root_url . '/assets/js/main.js', array('jquery'), '', true );
             }
 
@@ -178,12 +180,14 @@ if(!class_exists('HTRP_Recommended_Plugins')){
                                     $button_text    = esc_html__( 'Activated', $this->text_domain );
                                 }
 
+                                $thickbox_class = '';
                                 if( $plugins_type == 'free' ){
-                                    $image_url    = $prepare_plugin[$data['slug']]['icons']['1x'];
-                                    $description  = $prepare_plugin[$data['slug']]['description'];
-                                    $author_name  = $prepare_plugin[$data['slug']]['author'];
-                                    $author_link  = 'https://hasthemes.com/';
-                                    $details_link = admin_url() . '/plugin-install.php?tab=plugin-information&plugin=' . $data['slug']. '&TB_iframe=true&width=772&height=577';
+                                    $thickbox_class = 'thickbox open-plugin-details-modal';
+                                    $image_url      = $prepare_plugin[$data['slug']]['icons']['1x'];
+                                    $description    = $prepare_plugin[$data['slug']]['description'];
+                                    $author_name    = $prepare_plugin[$data['slug']]['author'];
+                                    $author_link    = 'https://hasthemes.com/';
+                                    $details_link   = admin_url() . '/plugin-install.php?tab=plugin-information&plugin=' . $data['slug']. '&TB_iframe=true&width=772&height=577';
                                     $target       = '_self';
                                 } else{
                                     $image_url      = isset($plugin['image']) ? $plugin['image'] : ''; 
@@ -198,9 +202,9 @@ if(!class_exists('HTRP_Recommended_Plugins')){
                                 <div class="plugin-card-top">
                                     <div class="name column-name" style="margin-right: 0;">
                                         <h3>
-                                            <a href="<?php echo esc_url($details_link) ?>" target="<?php echo esc_attr($target) ?>"  class="thickbox open-plugin-details-modal">
-                                                <?php echo esc_html($title) ?>
-                                                <img src="<?php echo esc_url($image_url) ?>" class="plugin-icon" alt="<?php echo esc_attr($title) ?>">
+                                            <a href="<?php echo esc_url($details_link) ?>" target="<?php echo esc_attr($target) ?>"  class="<?php echo esc_attr($thickbox_class); ?>">
+                                                <?php echo esc_html($data['name']) ?>
+                                                <img src="<?php echo esc_url($image_url) ?>" class="plugin-icon" alt="<?php echo esc_attr($data['name']) ?>">
                                             </a>
                                         </h3>
                                     </div>
@@ -227,7 +231,7 @@ if(!class_exists('HTRP_Recommended_Plugins')){
 
                                     </div>
                                     <div class="column-downloaded">
-                                        <a href="<?php echo esc_url( $details_link ) ?>" target="<?php echo esc_attr($target) ?>" ><?php echo esc_html__('More Details', $this->text_domain) ?></a>
+                                        <a href="<?php echo esc_url( $details_link ) ?>" class="<?php echo esc_attr($thickbox_class) ?>" target="<?php echo esc_attr($target) ?>" ><?php echo esc_html__('More Details', $this->text_domain) ?></a>
                                     </div>
                                 </div>
                             </div>
