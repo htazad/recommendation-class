@@ -186,7 +186,7 @@ if(!class_exists('HTRP_Recommended_Plugins')){
                                     $details_link = admin_url() . '/plugin-install.php?tab=plugin-information&plugin=' . $data['slug']. '&TB_iframe=true&width=772&height=577';
                                     $target       = '_self';
                                 } else{
-                                    $image_url      = $plugin['image'];
+                                    $image_url      = isset($plugin['image']) ? $plugin['image'] : ''; 
                                     $description    = $plugin['description'];
                                     $author_name    = 'HasThemes';
                                     $author_link    = 'https://hasthemes.com/';
