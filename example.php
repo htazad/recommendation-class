@@ -11,7 +11,7 @@
  * @param string    $hook_suffix use it to load this library assets only to the recommedded plugins page. Not into the whol admin area.
  *
  */
-$recommendations = new HTRP_Recommended_Plugins( $text_domain = 'text-domain', $parent_menu_slug = 'whols-admin', $submenu_label = '', $submenu_page_name = '', $priority = '', $hook_suffix = '' );
+$recommendations = new HTRP_Recommended_Plugins( $text_domain = 'text-domain', $parent_menu_slug = '', $submenu_label = '', $submenu_page_name = '', $priority = '', $hook_suffix = '' );
 
 $recommendations->add_new_tab(array(
     'title' => esc_html__( 'Pro Version', 'text-domain' ),
