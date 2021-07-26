@@ -1,9 +1,9 @@
 <?php
-namespace Hasthemes\HTPM;
+namespace Hasthemes\HTBuilder;
 
 /**
  * Recommended Plugins handlers class
- * @version 1.0.2
+ * @version 1.0.3
  */
 class HTRP_Recommended_Plugins {
 
@@ -210,10 +210,11 @@ class HTRP_Recommended_Plugins {
                                     'location'  => isset( $plugin['location'] ) ? $plugin['slug'].'/'.$plugin['location'] : '',
                                     'name'      => isset( $plugin['name'] ) ? $plugin['name'] : '',
                                 );
-                                $title = wp_kses( $plugin['name'], $this->plugins_allowedtags );
 
                                 if( array_key_exists( $plugin['slug'], $prepare_plugin ) ){
                                     $plugins_type = 'free';
+                                    $title        = $data['name'] ? $data['name'] : $prepare_plugin[$plugin['slug']]['name'];
+                                    $title        = wp_kses( $title, $this->plugins_allowedtags );
                                     $image_url    = $this->plugin_icon( $plugins_type, $prepare_plugin[$data['slug']]['icons'] );
                                     $description  = strip_tags( $prepare_plugin[$data['slug']]['description'] );
                                     $author_name  = wp_kses( $prepare_plugin[$data['slug']]['author'], $this->plugins_allowedtags );
@@ -223,7 +224,8 @@ class HTRP_Recommended_Plugins {
 
                                 }else{
                                     $plugins_type = 'pro';
-                                    $image_url     = $this->plugin_icon( $plugins_type, $plugin['slug'] );
+                                    $title          = wp_kses( $plugin['name'], $this->plugins_allowedtags );
+                                    $image_url      = $this->plugin_icon( $plugins_type, $plugin['slug'] );
                                     $description    = isset($plugin['description']) ? $plugin['description'] : '';
                                     $author_name    = esc_html__( 'HasTheme', $this->text_domain );
                                     $author_link    = isset($plugin['author_link']) ? $plugin['author_link'] : '';
