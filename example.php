@@ -20,7 +20,7 @@ if( class_exists('Hasthemes\HTPM\HTRP_Recommended_Plugins') ){
             'parent_menu_slug'  => 'htpm-options', 
             'menu_capability'   => 'manage_options', 
             'menu_page_slug'    => 'htpm_recommendations',
-            'priority'          => '',
+            'priority'          => '999',
             'assets_url'        => '',
             'hook_suffix'       => '',
         )
