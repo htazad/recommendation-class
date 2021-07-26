@@ -11,6 +11,8 @@
  *
  */
 
+require(  __DIR__ .'/class.recommended-plugins.php' );
+
 if( class_exists('Hasthemes\HTPM\HTRP_Recommended_Plugins') ){
     $recommendations = new Hasthemes\HTPM\HTRP_Recommended_Plugins(
         array( 
